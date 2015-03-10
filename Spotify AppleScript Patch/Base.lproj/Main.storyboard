@@ -672,11 +672,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="9uP-Xi-bJK">
+                            <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9uP-Xi-bJK" customClass="ColorView" customModule="Spotify_AppleScript_Patch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="190" width="480" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="8he-pS-7EW"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </customView>
                         </subviews>
                         <constraints>

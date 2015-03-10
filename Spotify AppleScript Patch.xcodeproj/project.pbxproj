@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B53B19401AAF292600FF4D36 /* AppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B193F1AAF292600FF4D36 /* AppsController.swift */; };
 		B53B19481AAF2EF300FF4D36 /* DCOLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B19471AAF2EF300FF4D36 /* DCOLogger.swift */; };
+		B53B194A1AAF359800FF4D36 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B19491AAF359800FF4D36 /* ColorView.swift */; };
 		B5A442611AAF1E5A00A280A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A442601AAF1E5A00A280A3 /* AppDelegate.swift */; };
 		B5A442631AAF1E5A00A280A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A442621AAF1E5A00A280A3 /* ViewController.swift */; };
 		B5A442651AAF1E5A00A280A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A442641AAF1E5A00A280A3 /* Images.xcassets */; };
@@ -30,6 +31,7 @@
 		294E13C0FB90A794B0DD7E8C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53B193F1AAF292600FF4D36 /* AppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsController.swift; sourceTree = "<group>"; };
 		B53B19471AAF2EF300FF4D36 /* DCOLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCOLogger.swift; sourceTree = "<group>"; };
+		B53B19491AAF359800FF4D36 /* ColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		B5A4425B1AAF1E5A00A280A3 /* Spotify AppleScript Patch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify AppleScript Patch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A4425F1AAF1E5A00A280A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A442601AAF1E5A00A280A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				B5A442601AAF1E5A00A280A3 /* AppDelegate.swift */,
 				B5A442621AAF1E5A00A280A3 /* ViewController.swift */,
 				B53B193F1AAF292600FF4D36 /* AppsController.swift */,
+				B53B19491AAF359800FF4D36 /* ColorView.swift */,
 				B53B19471AAF2EF300FF4D36 /* DCOLogger.swift */,
 				B5A442641AAF1E5A00A280A3 /* Images.xcassets */,
 				B5A442661AAF1E5A00A280A3 /* Main.storyboard */,
@@ -228,6 +231,7 @@
 				B5A442631AAF1E5A00A280A3 /* ViewController.swift in Sources */,
 				B5A442611AAF1E5A00A280A3 /* AppDelegate.swift in Sources */,
 				B53B19401AAF292600FF4D36 /* AppsController.swift in Sources */,
+				B53B194A1AAF359800FF4D36 /* ColorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
