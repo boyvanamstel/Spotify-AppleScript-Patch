@@ -10,6 +10,8 @@ import Cocoa
 
 class Patcher: NSObject {
   
+  var shouldCreateBackup: Bool = false
+  
   var isInstalled: Bool {
     get {
       return spotifyPath != nil
@@ -20,11 +22,8 @@ class Patcher: NSObject {
     get {
       
       if let info = self.info {
-        
         if let sdefFilename: AnyObject = info.valueForKey("OSAScriptingDefinition") {
-          
           let sdefPath: String? = self.spotifyPath?.stringByAppendingPathComponent("/Contents/Resources/\(sdefFilename)")
-          
           let manager = NSFileManager.defaultManager()
           var isDir: ObjCBool = false
           if !manager.fileExistsAtPath(sdefPath!, isDirectory: &isDir) {
@@ -40,7 +39,6 @@ class Patcher: NSObject {
     get {
       
       if let plistPath = self.plistPath {
-        
         let dict = NSDictionary(contentsOfFile: plistPath)
         return dict
       }
@@ -52,11 +50,8 @@ class Patcher: NSObject {
     get {
       
       if let info = self.info {
-        
         if let iconFilename: AnyObject = info.valueForKey("CFBundleIconFile") {
-        
           let imagePath = self.spotifyPath?.stringByAppendingPathComponent("/Contents/Resources/\(iconFilename)")
-          
           return NSImage(contentsOfFile: imagePath!)
         }
       }
@@ -67,16 +62,66 @@ class Patcher: NSObject {
   func patch() -> Bool {
     
     if !self.needsPatch {
-      DCOLogger.log("Patching not required")
+      DCOLogger.error("[Patcher] patching not required, or Spotify not found")
       return false
     }
     
-    if let oddSdefPath = self.oddSdefPath {
-      if let sdefPath = self.sdefPath {
-        
+    if self.shouldCreateBackup {
+      if !self.backup() {
+        return false
       }
     }
+
+    var info = self.info?.mutableCopy() as NSMutableDictionary
+    info.setValue(self.newSdefValue, forKey: "OSAScriptingDefinition")
+
+    if let plistPath = self.plistPath {
+      let manager = NSFileManager.defaultManager()
+      var error: NSError?
+      if !manager.removeItemAtPath(plistPath, error: &error) {
+        DCOLogger.error("[Patcher] failed to remove existing Info.plist file")
+        return false
+      }
+      return info.writeToFile(plistPath, atomically: true)
+    }
+    return false
+  }
+  
+  private func killSpotify() -> Bool {
+    return false
+  }
+  
+  private func runSpotify() -> Bool {
+    return false
+  }
+  
+  private func backup() -> Bool {
     
+    if let plistPath = self.plistPath {
+      
+      let desktopPath = "~/Desktop/Info.plist-spotifybackup".stringByExpandingTildeInPath
+
+      let manager = NSFileManager.defaultManager()
+      
+      if manager.fileExistsAtPath(desktopPath) {
+        var removeError: NSError?
+        if !manager.removeItemAtPath(desktopPath, error: &removeError) {
+          DCOLogger.error("[Patcher] failed to remove existing backup plist file: \(removeError)")
+          return false
+        }
+      }
+      
+      var copyError: NSError?
+      if manager.copyItemAtPath(plistPath, toPath: desktopPath, error: &copyError) {
+        return true
+      } else {
+        DCOLogger.error("[Patcher] failed to backup plist file: \(copyError)")
+      }
+    }
+    return false
+  }
+  
+  private var isSpotifyRunning: Bool {
     return false
   }
   
@@ -90,7 +135,6 @@ class Patcher: NSObject {
       var spotifyPath: String?
       
       for path in paths {
-        
         // Check if Spotify exists at the path
         if manager.fileExistsAtPath(path, isDirectory: &isDir) {
           spotifyPath = path
@@ -107,9 +151,7 @@ class Patcher: NSObject {
     
       if let spotifyPath = self.spotifyPath {
         if let info = self.info {
-          
           if let sdefFilename: AnyObject = info.valueForKey("OSAScriptingDefinition") {
-            
             return spotifyPath.stringByAppendingPathComponent("/Contents/Resources/\(sdefFilename)")
           }
         }
@@ -118,17 +160,32 @@ class Patcher: NSObject {
     }
   }
   
-  private var oddSdefPath: String? {
+  private var newSdefPath: String? {
     get {
       
       if let spotifyPath = self.spotifyPath {
-        
-        let oddSdefPath = spotifyPath.stringByAppendingPathComponent("/Contents/Resources/applescript/Spotify.sdef")
-        
+        let newSdefPath = spotifyPath.stringByAppendingPathComponent("/Contents/Resources/applescript/Spotify.sdef")
         let manager = NSFileManager.defaultManager()
         var isDir: ObjCBool = false
-        if manager.fileExistsAtPath(oddSdefPath, isDirectory: &isDir) {
-          return oddSdefPath
+        if manager.fileExistsAtPath(newSdefPath, isDirectory: &isDir) {
+          return newSdefPath
+        }
+      }
+      return nil
+    }
+  }
+  
+  private var newSdefValue: String? {
+    get {
+      
+      if let spotifyPath = self.spotifyPath {
+        if let newSdefPath = self.newSdefPath {
+          var newSdefValue = newSdefPath.stringByReplacingOccurrencesOfString(spotifyPath.stringByAppendingPathComponent("/Contents/Resources/"), withString: "")
+          if Array(newSdefValue)[0] == "/" {
+            return newSdefValue.substringFromIndex(advance(newSdefValue.startIndex, 1))
+          } else {
+            return newSdefValue
+          }
         }
       }
       return nil
@@ -139,9 +196,7 @@ class Patcher: NSObject {
     get {
       
       if let spotifyPath = self.spotifyPath {
-        
         let plistPath: String? = spotifyPath.stringByAppendingPathComponent("/Contents/Info.plist")
-        
         let manager = NSFileManager.defaultManager()
         var isDir: ObjCBool = false
         if manager.fileExistsAtPath(plistPath!, isDirectory: &isDir) {
@@ -151,4 +206,5 @@ class Patcher: NSObject {
       return nil
     }
   }
+  
 }

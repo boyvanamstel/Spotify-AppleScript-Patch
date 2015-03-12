@@ -10,10 +10,18 @@ import Foundation
 
 class DCOLogger {
   
-  class func log(message: String) {
+  class func verbose(message: String) {
     #if DEBUG
       NSLog(message);
     #endif
+  }
+  
+  class func warn(message: String) {
+    NSLog(message);
+  }
+  
+  class func error(message: String) {
+    NSLog(message);
   }
   
 }

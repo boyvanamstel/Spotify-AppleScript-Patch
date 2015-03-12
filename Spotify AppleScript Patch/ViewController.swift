@@ -12,12 +12,38 @@ class ViewController: NSViewController {
   
   @IBOutlet weak var spotifyIconImageView: NSImageView?
   @IBOutlet weak var statusTextField: NSTextField?
-  @IBOutlet weak var patchButton: NSButton?
-  
+
   @IBAction func patch(sender: NSButton) {
     
-    var patcher = Patcher()
-    patcher.patch()
+    if self.patcher.patch() {
+      self.patchingEnabled = self.patcher.needsPatch
+    }
+  }
+  
+  @IBAction func toggleShouldBackup(sender: NSButton) {
+    
+    if sender.state == 1 {
+      self.patcher.shouldCreateBackup = true
+    } else {
+      self.patcher.shouldCreateBackup = false
+    }
+  }
+
+  var patcher = Patcher()
+  var patchingEnabled: Bool = false {
+    willSet {
+      
+      self.willChangeValueForKey("patchingEnabled")
+    }
+    didSet {
+      
+      if self.patchingEnabled {
+        self.statusTextField?.stringValue = "Needs to be patched"
+      } else {
+        self.statusTextField?.stringValue = "AppleScript is enabled!"
+      }
+      self.didChangeValueForKey("patchingEnabled")
+    }
   }
   
   override func viewDidLoad() {
@@ -25,23 +51,11 @@ class ViewController: NSViewController {
     
     // Do any additional setup after loading the view.
     
-    var patcher = Patcher()
-    
-    if patcher.isInstalled {
-
-      self.spotifyIconImageView?.image = patcher.appImage
-      
-      if patcher.needsPatch {
-        self.statusTextField?.stringValue = "Needs to be patched"
-        self.patchButton?.enabled = true
-      } else {
-        self.statusTextField?.stringValue = "No patching required!"
-        self.patchButton?.enabled = false
-      }
-      
+    if self.patcher.isInstalled {
+      self.spotifyIconImageView?.image = self.patcher.appImage
+      self.patchingEnabled = self.patcher.needsPatch
     } else {
       self.statusTextField?.stringValue = "Spotify is not installed"
-      self.patchButton?.enabled = false
     }
   }
   
