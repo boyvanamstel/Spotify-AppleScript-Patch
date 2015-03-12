@@ -9,11 +9,11 @@
 import Foundation
 
 class DCOLogger {
-
-    class func log(message: String) {
-        #if DEBUG
-            NSLog(message);
-        #endif
-    }
-        
+  
+  class func log(message: String) {
+    #if DEBUG
+      NSLog(message);
+    #endif
+  }
+  
 }

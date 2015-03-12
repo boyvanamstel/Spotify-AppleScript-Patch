@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -650,7 +650,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -673,7 +673,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9uP-Xi-bJK" customClass="ColorView" customModule="Spotify_AppleScript_Patch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="190" width="480" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="8he-pS-7EW"/>
                                 </constraints>
@@ -683,13 +683,60 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yef-Od-XgE">
+                                <rect key="frame" x="20" y="122" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="GPf-ih-ywG"/>
+                                    <constraint firstAttribute="height" constant="128" id="Qcu-K5-4Ey"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="MhG-QQ-7Xa"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hql-dW-giy">
+                                <rect key="frame" x="166" y="233" width="48" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Status:" id="J8W-pk-K6p">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1hV-y2-A6o">
+                                <rect key="frame" x="214" y="233" width="38" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Utt-oV-j6H">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-FC-JN7">
+                                <rect key="frame" x="162" y="185" width="76" height="32"/>
+                                <buttonCell key="cell" type="push" title="Patch" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1XA-Lo-OC4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="patch:" target="XfG-lQ-9wD" id="wm4-6m-jUi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9uP-Xi-bJK" secondAttribute="trailing" id="1tk-hy-qBi"/>
+                            <constraint firstItem="1hV-y2-A6o" firstAttribute="leading" secondItem="ET6-FC-JN7" secondAttribute="leading" constant="48" id="BfO-Mj-xQ3"/>
+                            <constraint firstItem="hql-dW-giy" firstAttribute="top" secondItem="Yef-Od-XgE" secondAttribute="top" id="JYy-47-BVi"/>
+                            <constraint firstItem="1hV-y2-A6o" firstAttribute="leading" secondItem="hql-dW-giy" secondAttribute="trailing" constant="4" id="Liq-0f-Xl5"/>
                             <constraint firstItem="9uP-Xi-bJK" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="NCb-fn-GX0"/>
-                            <constraint firstItem="9uP-Xi-bJK" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="aTd-4a-fd1"/>
+                            <constraint firstItem="Yef-Od-XgE" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="RHI-Dm-99K"/>
+                            <constraint firstItem="1hV-y2-A6o" firstAttribute="baseline" secondItem="hql-dW-giy" secondAttribute="baseline" id="gRU-LM-rUR"/>
+                            <constraint firstItem="Yef-Od-XgE" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="jwK-rf-ztv"/>
+                            <constraint firstAttribute="bottom" secondItem="9uP-Xi-bJK" secondAttribute="bottom" id="sWe-HQ-7BR"/>
+                            <constraint firstItem="ET6-FC-JN7" firstAttribute="top" secondItem="1hV-y2-A6o" secondAttribute="bottom" constant="20" id="uDa-m2-8JD"/>
+                            <constraint firstItem="hql-dW-giy" firstAttribute="leading" secondItem="Yef-Od-XgE" secondAttribute="trailing" constant="20" id="yCz-5Q-YAy"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="patchButton" destination="ET6-FC-JN7" id="311-ze-GFe"/>
+                        <outlet property="spotifyIconImageView" destination="Yef-Od-XgE" id="G3a-2o-IXF"/>
+                        <outlet property="statusTextField" destination="1hV-y2-A6o" id="R6q-pv-foI"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="8Yv-yO-kvj" customClass="AppsController" customModule="Spotify_AppleScript_Patch" customModuleProvider="target">
@@ -701,4 +748,7 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSCaution" width="32" height="32"/>
+    </resources>
 </document>

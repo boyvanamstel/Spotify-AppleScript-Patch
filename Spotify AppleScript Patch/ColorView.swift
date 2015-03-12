@@ -10,16 +10,16 @@ import Cocoa
 
 @IBDesignable
 class ColorView: NSView {
+  
+  @IBInspectable var backgroundColor: NSColor?
+  
+  override func drawRect(dirtyRect: NSRect) {
+    super.drawRect(dirtyRect)
     
-    @IBInspectable var backgroundColor: NSColor?
-
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
-        
-        if((self.backgroundColor) != nil) {
-            self.backgroundColor!.setFill()
-            NSRectFill(dirtyRect)
-        }
-
+    if((self.backgroundColor) != nil) {
+      self.backgroundColor!.setFill()
+      NSRectFill(dirtyRect)
     }
+    
+  }
 }

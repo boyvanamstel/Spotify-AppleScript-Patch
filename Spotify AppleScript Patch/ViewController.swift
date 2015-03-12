@@ -9,18 +9,47 @@
 import Cocoa
 
 class ViewController: NSViewController {
+  
+  @IBOutlet weak var spotifyIconImageView: NSImageView?
+  @IBOutlet weak var statusTextField: NSTextField?
+  @IBOutlet weak var patchButton: NSButton?
+  
+  @IBAction func patch(sender: NSButton) {
+    
+    var patcher = Patcher()
+    patcher.patch()
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // Do any additional setup after loading the view.
+    
+    var patcher = Patcher()
+    
+    if patcher.isInstalled {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+      self.spotifyIconImageView?.image = patcher.appImage
+      
+      if patcher.needsPatch {
+        self.statusTextField?.stringValue = "Needs to be patched"
+        self.patchButton?.enabled = true
+      } else {
+        self.statusTextField?.stringValue = "No patching required!"
+        self.patchButton?.enabled = false
+      }
+      
+    } else {
+      self.statusTextField?.stringValue = "Spotify is not installed"
+      self.patchButton?.enabled = false
     }
-
-    override var representedObject: AnyObject? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+  }
+  
+  override var representedObject: AnyObject? {
+    didSet {
+      // Update the view, if already loaded.
     }
-
+  }
+  
 }
 
