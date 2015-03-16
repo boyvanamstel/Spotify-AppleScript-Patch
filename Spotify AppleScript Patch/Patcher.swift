@@ -128,21 +128,8 @@ class Patcher: NSObject {
   private var spotifyPath: String? {
     get {
       
-      let manager = NSFileManager.defaultManager()
-      // Find Spotify in /Applications
-      let paths: [String] = ["~/Applications/Spotify.app".stringByExpandingTildeInPath, "/Applications/Spotify.app"]
-      var isDir: ObjCBool = true
-      var spotifyPath: String?
-      
-      for path in paths {
-        // Check if Spotify exists at the path
-        if manager.fileExistsAtPath(path, isDirectory: &isDir) {
-          spotifyPath = path
-          break // Quit loop
-        }
-      }
-
-      return spotifyPath
+      let spotifyPathURL = NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier("com.spotify.client")
+      return spotifyPathURL?.path
     }
   }
   
