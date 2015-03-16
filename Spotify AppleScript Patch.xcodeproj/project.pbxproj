@@ -10,6 +10,8 @@
 		B53B19401AAF292600FF4D36 /* AppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B193F1AAF292600FF4D36 /* AppsController.swift */; };
 		B53B19481AAF2EF300FF4D36 /* DCOLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B19471AAF2EF300FF4D36 /* DCOLogger.swift */; };
 		B53B194A1AAF359800FF4D36 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B19491AAF359800FF4D36 /* ColorView.swift */; };
+		B53D417B1AB6FE7600ED47D4 /* RoundedButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D417A1AB6FE7600ED47D4 /* RoundedButtonCell.swift */; };
+		B53D41831AB7033700ED47D4 /* SpotifyASPatchStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D41821AB7033700ED47D4 /* SpotifyASPatchStyleKit.swift */; };
 		B57A31821AB07A0E00D44C15 /* Patcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57A31811AB07A0E00D44C15 /* Patcher.swift */; };
 		B5A442611AAF1E5A00A280A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A442601AAF1E5A00A280A3 /* AppDelegate.swift */; };
 		B5A442631AAF1E5A00A280A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A442621AAF1E5A00A280A3 /* ViewController.swift */; };
@@ -33,6 +35,8 @@
 		B53B193F1AAF292600FF4D36 /* AppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsController.swift; sourceTree = "<group>"; };
 		B53B19471AAF2EF300FF4D36 /* DCOLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCOLogger.swift; sourceTree = "<group>"; };
 		B53B19491AAF359800FF4D36 /* ColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
+		B53D417A1AB6FE7600ED47D4 /* RoundedButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButtonCell.swift; sourceTree = "<group>"; };
+		B53D41821AB7033700ED47D4 /* SpotifyASPatchStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyASPatchStyleKit.swift; sourceTree = "<group>"; };
 		B57A31811AB07A0E00D44C15 /* Patcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patcher.swift; sourceTree = "<group>"; };
 		B5A4425B1AAF1E5A00A280A3 /* Spotify AppleScript Patch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify AppleScript Patch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A4425F1AAF1E5A00A280A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +75,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B53D41791AB6FE5D00ED47D4 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				B53D417A1AB6FE7600ED47D4 /* RoundedButtonCell.swift */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		B53D417D1AB7013100ED47D4 /* StyleKits */ = {
+			isa = PBXGroup;
+			children = (
+				B53D41821AB7033700ED47D4 /* SpotifyASPatchStyleKit.swift */,
+			);
+			path = StyleKits;
+			sourceTree = "<group>";
+		};
 		B5A442521AAF1E5A00A280A3 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +113,8 @@
 		B5A4425D1AAF1E5A00A280A3 /* Spotify AppleScript Patch */ = {
 			isa = PBXGroup;
 			children = (
+				B53D417D1AB7013100ED47D4 /* StyleKits */,
+				B53D41791AB6FE5D00ED47D4 /* Buttons */,
 				B5A442601AAF1E5A00A280A3 /* AppDelegate.swift */,
 				B5A442621AAF1E5A00A280A3 /* ViewController.swift */,
 				B53B193F1AAF292600FF4D36 /* AppsController.swift */,
@@ -232,8 +254,10 @@
 			files = (
 				B53B19481AAF2EF300FF4D36 /* DCOLogger.swift in Sources */,
 				B5A442631AAF1E5A00A280A3 /* ViewController.swift in Sources */,
+				B53D41831AB7033700ED47D4 /* SpotifyASPatchStyleKit.swift in Sources */,
 				B5A442611AAF1E5A00A280A3 /* AppDelegate.swift in Sources */,
 				B53B19401AAF292600FF4D36 /* AppsController.swift in Sources */,
+				B53D417B1AB6FE7600ED47D4 /* RoundedButtonCell.swift in Sources */,
 				B53B194A1AAF359800FF4D36 /* ColorView.swift in Sources */,
 				B57A31821AB07A0E00D44C15 /* Patcher.swift in Sources */,
 			);

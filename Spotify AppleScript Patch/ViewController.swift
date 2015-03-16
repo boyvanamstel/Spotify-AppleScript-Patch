@@ -11,7 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
   
   @IBOutlet weak var spotifyIconImageView: NSImageView?
-  @IBOutlet weak var statusTextField: NSTextField?
+  @IBOutlet weak var patchButton: NSButton?
 
   @IBAction func patch(sender: NSButton) {
     
@@ -38,9 +38,9 @@ class ViewController: NSViewController {
     didSet {
       
       if self.patchingEnabled {
-        self.statusTextField?.stringValue = "Needs to be patched"
+        self.patchButton?.title = "Apply Patch"
       } else {
-        self.statusTextField?.stringValue = "AppleScript is enabled!"
+        self.patchButton?.title = "All Done!"
       }
       self.didChangeValueForKey("patchingEnabled")
     }
@@ -50,12 +50,12 @@ class ViewController: NSViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    
+
     if self.patcher.isInstalled {
       self.spotifyIconImageView?.image = self.patcher.appImage
       self.patchingEnabled = self.patcher.needsPatch
     } else {
-      self.statusTextField?.stringValue = "Spotify is not installed"
+      self.patchButton?.title = "Spotify Not Found"
     }
   }
   
