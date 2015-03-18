@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D98g" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
@@ -689,13 +689,13 @@
                                     <font key="font" metaFont="systemBold" size="15"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="patch:" target="XfG-lQ-9wD" id="wm4-6m-jUi"/>
                                     <binding destination="XfG-lQ-9wD" name="enabled" keyPath="self.patchingEnabled" id="vlj-wb-KQK"/>
+                                    <segue destination="gFM-Nq-C1W" kind="sheet" id="2HS-Yk-9fd"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lTE-aw-Aok">
-                                <rect key="frame" x="18" y="16" width="186" height="18"/>
-                                <buttonCell key="cell" type="check" title="Create backup of Info.plist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="L9A-gz-Slm">
+                                <rect key="frame" x="18" y="18" width="187" height="18"/>
+                                <buttonCell key="cell" type="check" title="Create backup on Desktop" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="L9A-gz-Slm">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -718,6 +718,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="createBackupButton" destination="lTE-aw-Aok" id="VLM-PL-2v0"/>
                         <outlet property="patchButton" destination="ET6-FC-JN7" id="bVY-80-zL1"/>
                         <outlet property="spotifyIconImageView" destination="Yef-Od-XgE" id="G3a-2o-IXF"/>
                     </connections>
@@ -726,6 +727,83 @@
                 <customObject id="8Yv-yO-kvj" customClass="AppsController" customModule="Spotify_AppleScript_Patch" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="22" y="706"/>
+        </scene>
+        <!--Confirm Sheet View Controller-->
+        <scene sceneID="g3D-A7-ieE">
+            <objects>
+                <viewController id="gFM-Nq-C1W" customClass="ConfirmSheetViewController" customModule="Spotify_AppleScript_Patch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="vUu-Wj-q4d" customClass="ColorView" customModule="Spotify_AppleScript_Patch" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="148"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="alV-i8-Br3">
+                                <rect key="frame" x="18" y="94" width="304" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="kyG-J6-qbF"/>
+                                </constraints>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This will patch [Spotify path]/Contents/Info.plist to point to the correct .sdef file path." id="i4C-mA-1VG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DI9-jN-R3E">
+                                <rect key="frame" x="20" y="60" width="160" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Do you want to proceed?" id="AHj-Yq-Z3d">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="niJ-c8-nzy">
+                                <rect key="frame" x="276" y="18" width="44" height="25"/>
+                                <buttonCell key="cell" type="squareTextured" title="Patch" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tub-FV-oLz" customClass="RoundedButtonCell" customModule="Spotify_AppleScript_Patch" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="patch:" target="gFM-Nq-C1W" id="vdm-qv-7du"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dgu-aZ-e0s">
+                                <rect key="frame" x="217" y="18" width="51" height="25"/>
+                                <buttonCell key="cell" type="squareTextured" title="Cancel" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pH2-6h-vh8" customClass="TextButtonCell" customModule="Spotify_AppleScript_Patch" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="gFM-Nq-C1W" id="eWK-LQ-uvX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="niJ-c8-nzy" firstAttribute="leading" secondItem="Dgu-aZ-e0s" secondAttribute="trailing" constant="8" id="50b-Dv-6iM"/>
+                            <constraint firstItem="niJ-c8-nzy" firstAttribute="baseline" secondItem="Dgu-aZ-e0s" secondAttribute="baseline" id="KFj-fy-igd"/>
+                            <constraint firstAttribute="trailing" secondItem="niJ-c8-nzy" secondAttribute="trailing" constant="20" id="TlV-YJ-dO7"/>
+                            <constraint firstItem="alV-i8-Br3" firstAttribute="top" secondItem="vUu-Wj-q4d" secondAttribute="top" constant="20" id="ky9-wG-ZFw"/>
+                            <constraint firstAttribute="trailing" secondItem="alV-i8-Br3" secondAttribute="trailing" constant="20" id="sct-Vl-hND"/>
+                            <constraint firstItem="alV-i8-Br3" firstAttribute="leading" secondItem="vUu-Wj-q4d" secondAttribute="leading" constant="20" id="xeg-SA-lM5"/>
+                            <constraint firstAttribute="bottom" secondItem="niJ-c8-nzy" secondAttribute="bottom" constant="20" id="y0H-fO-h0a"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="patchButton" destination="niJ-c8-nzy" id="UiH-Fh-xLa"/>
+                    </connections>
+                </viewController>
+                <customObject id="fJt-eG-Ymu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="404" y="605"/>
         </scene>
     </scenes>
     <resources>

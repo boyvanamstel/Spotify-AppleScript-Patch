@@ -8,27 +8,7 @@
 
 import Cocoa
 
-class RoundedButtonCell: NSButtonCell {
-  
-  func attributedStringWithColor(attributedString: NSAttributedString, color: NSColor) -> NSAttributedString {
-    
-    // Create mutable copy
-    var mutableString = attributedString.mutableCopy() as NSMutableAttributedString
-    
-    // Set alignment
-    let paragrahStyle = NSMutableParagraphStyle()
-    paragrahStyle.alignment = NSTextAlignment.CenterTextAlignment
-    
-    let range = NSMakeRange(0, mutableString.length);
-    
-    // Set alignment
-    mutableString.addAttribute(NSParagraphStyleAttributeName, value: paragrahStyle, range: range)
-    
-    // Set color
-    mutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.whiteColor(), range: range)
-
-    return mutableString.copy() as NSAttributedString
-  }
+class RoundedButtonCell: TextButtonCell {
   
   override func drawingRectForBounds(theRect: NSRect) -> NSRect {
 

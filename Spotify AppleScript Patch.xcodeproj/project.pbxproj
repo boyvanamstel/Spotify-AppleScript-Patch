@@ -18,6 +18,8 @@
 		B5A442651AAF1E5A00A280A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A442641AAF1E5A00A280A3 /* Images.xcassets */; };
 		B5A442681AAF1E5A00A280A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5A442661AAF1E5A00A280A3 /* Main.storyboard */; };
 		B5A442741AAF1E5B00A280A3 /* Spotify_AppleScript_PatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A442731AAF1E5B00A280A3 /* Spotify_AppleScript_PatchTests.swift */; };
+		B5EA28C61AB9C11C0027F717 /* TextButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA28C51AB9C11C0027F717 /* TextButtonCell.swift */; };
+		B5EA28C81AB9C2CE0027F717 /* ConfirmSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EA28C71AB9C2CE0027F717 /* ConfirmSheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		B5A4426D1AAF1E5A00A280A3 /* Spotify AppleScript PatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Spotify AppleScript PatchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A442721AAF1E5B00A280A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A442731AAF1E5B00A280A3 /* Spotify_AppleScript_PatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify_AppleScript_PatchTests.swift; sourceTree = "<group>"; };
+		B5EA28C51AB9C11C0027F717 /* TextButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextButtonCell.swift; sourceTree = "<group>"; };
+		B5EA28C71AB9C2CE0027F717 /* ConfirmSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSheetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				B53D417A1AB6FE7600ED47D4 /* RoundedButtonCell.swift */,
+				B5EA28C51AB9C11C0027F717 /* TextButtonCell.swift */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 				B53D41791AB6FE5D00ED47D4 /* Buttons */,
 				B5A442601AAF1E5A00A280A3 /* AppDelegate.swift */,
 				B5A442621AAF1E5A00A280A3 /* ViewController.swift */,
+				B5EA28C71AB9C2CE0027F717 /* ConfirmSheetViewController.swift */,
 				B53B193F1AAF292600FF4D36 /* AppsController.swift */,
 				B53B19491AAF359800FF4D36 /* ColorView.swift */,
 				B57A31811AB07A0E00D44C15 /* Patcher.swift */,
@@ -253,10 +259,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B53B19481AAF2EF300FF4D36 /* DCOLogger.swift in Sources */,
+				B5EA28C61AB9C11C0027F717 /* TextButtonCell.swift in Sources */,
 				B5A442631AAF1E5A00A280A3 /* ViewController.swift in Sources */,
 				B53D41831AB7033700ED47D4 /* SpotifyASPatchStyleKit.swift in Sources */,
 				B5A442611AAF1E5A00A280A3 /* AppDelegate.swift in Sources */,
 				B53B19401AAF292600FF4D36 /* AppsController.swift in Sources */,
+				B5EA28C81AB9C2CE0027F717 /* ConfirmSheetViewController.swift in Sources */,
 				B53D417B1AB6FE7600ED47D4 /* RoundedButtonCell.swift in Sources */,
 				B53B194A1AAF359800FF4D36 /* ColorView.swift in Sources */,
 				B57A31821AB07A0E00D44C15 /* Patcher.swift in Sources */,

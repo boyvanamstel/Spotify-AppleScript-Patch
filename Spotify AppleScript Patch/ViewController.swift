@@ -12,13 +12,7 @@ class ViewController: NSViewController {
   
   @IBOutlet weak var spotifyIconImageView: NSImageView?
   @IBOutlet weak var patchButton: NSButton?
-
-  @IBAction func patch(sender: NSButton) {
-    
-    if self.patcher.patch() {
-      self.patchingEnabled = self.patcher.needsPatch
-    }
-  }
+  @IBOutlet weak var createBackupButton: NSButton?
   
   @IBAction func toggleShouldBackup(sender: NSButton) {
     
@@ -29,7 +23,7 @@ class ViewController: NSViewController {
     }
   }
 
-  var patcher = Patcher()
+  var patcher = Patcher.sharedInstance
   var patchingEnabled: Bool = false {
     willSet {
       
@@ -38,7 +32,7 @@ class ViewController: NSViewController {
     didSet {
       
       if self.patchingEnabled {
-        self.patchButton?.title = "Apply Patch"
+        self.patchButton?.title = "Apply Patch..."
       } else {
         self.patchButton?.title = "All Done!"
       }
@@ -51,18 +45,38 @@ class ViewController: NSViewController {
     
     // Do any additional setup after loading the view.
 
+    // Observe
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "patchStatusUpdated", name: "patchStatusUpdate", object: nil)
+    
+    // Setup design
+    let patchButtonCell: TextButtonCell = self.patchButton?.cell() as TextButtonCell
+    patchButtonCell.textColor = NSColor.whiteColor()
+    
     if self.patcher.isInstalled {
       self.spotifyIconImageView?.image = self.patcher.appImage
       self.patchingEnabled = self.patcher.needsPatch
     } else {
       self.patchButton?.title = "Spotify Not Found"
     }
+    
+    // Set default value for creating a backup
+    if let createBackupButton = self.createBackupButton {
+      self.toggleShouldBackup(createBackupButton)
+    }
+  }
+
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
   override var representedObject: AnyObject? {
     didSet {
       // Update the view, if already loaded.
     }
+  }
+  
+  func patchStatusUpdated() {
+    self.patchingEnabled = self.patcher.needsPatch
   }
   
 }

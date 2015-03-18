@@ -10,16 +10,40 @@ import Cocoa
 
 class Patcher: NSObject {
   
+  class var sharedInstance: Patcher {
+    struct Singleton {
+      static let instance = Patcher()
+    }
+    return Singleton.instance
+  }
+  
   var shouldCreateBackup: Bool = false
+  
+  var debugMode: Bool {
+    get {
+      
+      let theFlags = NSEvent.modifierFlags() & NSEventModifierFlags.AlternateKeyMask;
+      return theFlags.rawValue != 0
+    }
+  }
   
   var isInstalled: Bool {
     get {
+      
+      if self.debugMode {
+        return true
+      }
+
       return spotifyPath != nil
     }
   }
   
   var needsPatch: Bool {
     get {
+
+      if self.debugMode {
+        return true
+      }
       
       if let info = self.info {
         if let sdefFilename: AnyObject = info.valueForKey("OSAScriptingDefinition") {
