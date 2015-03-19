@@ -24,7 +24,6 @@ class ConfirmSheetViewController: NSViewController {
   @IBAction func patch(sender: NSButton) {
     
     if patcher.patch() {
-      NSNotificationCenter.defaultCenter().postNotificationName("patchStatusUpdate", object: nil)
       self.dismissController(self)
     }
   }

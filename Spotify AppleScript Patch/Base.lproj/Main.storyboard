@@ -733,23 +733,15 @@
             <objects>
                 <viewController id="gFM-Nq-C1W" customClass="ConfirmSheetViewController" customModule="Spotify_AppleScript_Patch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="vUu-Wj-q4d" customClass="ColorView" customModule="Spotify_AppleScript_Patch" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="148"/>
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="170"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="alV-i8-Br3">
-                                <rect key="frame" x="18" y="94" width="304" height="34"/>
+                                <rect key="frame" x="18" y="99" width="304" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="kyG-J6-qbF"/>
                                 </constraints>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This will patch [Spotify path]/Contents/Info.plist to point to the correct .sdef file path." id="i4C-mA-1VG">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DI9-jN-R3E">
-                                <rect key="frame" x="20" y="60" width="160" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Do you want to proceed?" id="AHj-Yq-Z3d">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This will quit Spotify, patch Spotify's Info.plist to point to the correct .sdef file path and launch Spotify again." id="i4C-mA-1VG">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -781,13 +773,24 @@ Gw
                                     <action selector="dismissController:" target="gFM-Nq-C1W" id="eWK-LQ-uvX"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DI9-jN-R3E">
+                                <rect key="frame" x="18" y="62" width="304" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Do you want to proceed?" id="AHj-Yq-Z3d">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="niJ-c8-nzy" firstAttribute="leading" secondItem="Dgu-aZ-e0s" secondAttribute="trailing" constant="8" id="50b-Dv-6iM"/>
+                            <constraint firstItem="alV-i8-Br3" firstAttribute="leading" secondItem="DI9-jN-R3E" secondAttribute="leading" id="8Xb-HX-iTJ"/>
+                            <constraint firstItem="DI9-jN-R3E" firstAttribute="top" secondItem="alV-i8-Br3" secondAttribute="bottom" constant="20" id="Bbe-2M-BLd"/>
                             <constraint firstItem="niJ-c8-nzy" firstAttribute="baseline" secondItem="Dgu-aZ-e0s" secondAttribute="baseline" id="KFj-fy-igd"/>
                             <constraint firstAttribute="trailing" secondItem="niJ-c8-nzy" secondAttribute="trailing" constant="20" id="TlV-YJ-dO7"/>
                             <constraint firstItem="alV-i8-Br3" firstAttribute="top" secondItem="vUu-Wj-q4d" secondAttribute="top" constant="20" id="ky9-wG-ZFw"/>
                             <constraint firstAttribute="trailing" secondItem="alV-i8-Br3" secondAttribute="trailing" constant="20" id="sct-Vl-hND"/>
+                            <constraint firstItem="alV-i8-Br3" firstAttribute="width" secondItem="DI9-jN-R3E" secondAttribute="width" id="t6d-6Z-jgw"/>
                             <constraint firstItem="alV-i8-Br3" firstAttribute="leading" secondItem="vUu-Wj-q4d" secondAttribute="leading" constant="20" id="xeg-SA-lM5"/>
                             <constraint firstAttribute="bottom" secondItem="niJ-c8-nzy" secondAttribute="bottom" constant="20" id="y0H-fO-h0a"/>
                         </constraints>
@@ -803,7 +806,7 @@ Gw
                 </viewController>
                 <customObject id="fJt-eG-Ymu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="404" y="605"/>
+            <point key="canvasLocation" x="404" y="616"/>
         </scene>
     </scenes>
     <resources>

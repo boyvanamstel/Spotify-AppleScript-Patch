@@ -24,6 +24,7 @@ class ViewController: NSViewController {
   }
 
   var patcher = Patcher.sharedInstance
+  
   var patchingEnabled: Bool = false {
     willSet {
       
@@ -40,13 +41,15 @@ class ViewController: NSViewController {
     }
   }
   
+  private var myContext = 0
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
 
     // Observe
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "patchStatusUpdated", name: "patchStatusUpdate", object: nil)
+    self.patcher.addObserver(self, forKeyPath: "needsPatch", options: .New, context: &myContext)
     
     // Setup design
     let patchButtonCell: TextButtonCell = self.patchButton?.cell() as TextButtonCell
@@ -65,18 +68,23 @@ class ViewController: NSViewController {
     }
   }
 
-  deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
-  }
-  
   override var representedObject: AnyObject? {
     didSet {
       // Update the view, if already loaded.
     }
   }
   
-  func patchStatusUpdated() {
-    self.patchingEnabled = self.patcher.needsPatch
+  override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
+    
+    if context == &myContext && keyPath == "needsPatch" {
+      self.patchingEnabled = change[NSKeyValueChangeNewKey] as Bool
+    } else {
+      super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+    }
+  }
+  
+  deinit {
+    self.patcher.removeObserver(self, forKeyPath: "needsPatch", context: &myContext)
   }
   
 }

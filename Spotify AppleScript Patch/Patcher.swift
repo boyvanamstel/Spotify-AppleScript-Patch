@@ -85,7 +85,7 @@ class Patcher: NSObject {
   
   func patch() -> Bool {
     
-    if !self.needsPatch {
+    if !self.needsPatch && !self.debugMode {
       DCOLogger.error("[Patcher] patching not required, or Spotify not found")
       return false
     }
@@ -95,6 +95,10 @@ class Patcher: NSObject {
         return false
       }
     }
+    
+//    if !self.killSpotify() {
+//      return false
+//    }
 
     var info = self.info?.mutableCopy() as NSMutableDictionary
     info.setValue(self.newSdefValue, forKey: "OSAScriptingDefinition")
@@ -106,16 +110,21 @@ class Patcher: NSObject {
         DCOLogger.error("[Patcher] failed to remove existing Info.plist file")
         return false
       }
-      return info.writeToFile(plistPath, atomically: true)
+      self.willChangeValueForKey("needsPatch")
+      let success = info.writeToFile(plistPath, atomically: true)
+      self.didChangeValueForKey("needsPatch")
+      return success
     }
     return false
   }
   
   private func killSpotify() -> Bool {
+    
+    
     return false
   }
   
-  private func runSpotify() -> Bool {
+  private func launchSpotify() -> Bool {
     return false
   }
   
