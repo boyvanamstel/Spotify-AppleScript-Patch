@@ -83,6 +83,17 @@ class Patcher: NSObject {
     }
   }
   
+  func appTerminated(notification: NSNotification) {
+
+    let tmp : [NSObject : AnyObject] = notification.userInfo!
+    if let appPath = tmp["NSApplicationPath"] as? String {
+      if let fileURL = NSURL(fileURLWithPath: appPath) {
+        NSWorkspace.sharedWorkspace().launchApplicationAtURL(fileURL, options: nil, configuration: [:], error: nil)
+        NSWorkspace.sharedWorkspace().notificationCenter.removeObserver(self)
+      }
+    }
+  }
+  
   func patch() -> Bool {
     
     if !self.needsPatch && !self.debugMode {
@@ -96,10 +107,6 @@ class Patcher: NSObject {
       }
     }
     
-//    if !self.killSpotify() {
-//      return false
-//    }
-
     var info = self.info?.mutableCopy() as NSMutableDictionary
     info.setValue(self.newSdefValue, forKey: "OSAScriptingDefinition")
 
@@ -113,18 +120,25 @@ class Patcher: NSObject {
       self.willChangeValueForKey("needsPatch")
       let success = info.writeToFile(plistPath, atomically: true)
       self.didChangeValueForKey("needsPatch")
+      
+      if success {
+        self.relaunchSpotify()
+      }
+      
       return success
     }
     return false
   }
   
-  private func killSpotify() -> Bool {
+  private func relaunchSpotify() -> Bool {
     
+    for app: NSRunningApplication in NSWorkspace.sharedWorkspace().runningApplications as Array {
+      if app.bundleIdentifier == "com.spotify.client" {
+        NSWorkspace.sharedWorkspace().notificationCenter.addObserver(self, selector: "appTerminated:", name:NSWorkspaceDidTerminateApplicationNotification, object: nil)
+        app.terminate()
+      }
+    }
     
-    return false
-  }
-  
-  private func launchSpotify() -> Bool {
     return false
   }
   
@@ -151,10 +165,6 @@ class Patcher: NSObject {
         DCOLogger.error("[Patcher] failed to backup plist file: \(copyError)")
       }
     }
-    return false
-  }
-  
-  private var isSpotifyRunning: Bool {
     return false
   }
   
