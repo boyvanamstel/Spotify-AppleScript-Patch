@@ -677,7 +677,7 @@
                                     <constraint firstAttribute="width" constant="128" id="GPf-ih-ywG"/>
                                     <constraint firstAttribute="height" constant="128" id="Qcu-K5-4Ey"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="MhG-QQ-7Xa"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Not Installed" id="MhG-QQ-7Xa"/>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-FC-JN7">
                                 <rect key="frame" x="115" y="112" width="51" height="31"/>
@@ -810,6 +810,6 @@ Gw
         </scene>
     </scenes>
     <resources>
-        <image name="NSCaution" width="32" height="32"/>
+        <image name="Not Installed" width="128" height="128"/>
     </resources>
 </document>
