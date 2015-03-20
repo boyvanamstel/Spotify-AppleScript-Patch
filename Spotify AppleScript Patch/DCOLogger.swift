@@ -24,4 +24,8 @@ class DCOLogger {
     NSLog(message);
   }
   
+  class func info(message: String) {
+    NSLog(message);
+  }
+  
 }

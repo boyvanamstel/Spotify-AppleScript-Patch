@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5104EE41ABB35780031C038 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5104EE31ABB35780031C038 /* Sparkle.framework */; };
+		B5104EE51ABB357F0031C038 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = B5104EE31ABB35780031C038 /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B53B19401AAF292600FF4D36 /* AppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B193F1AAF292600FF4D36 /* AppsController.swift */; };
 		B53B19481AAF2EF300FF4D36 /* DCOLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B19471AAF2EF300FF4D36 /* DCOLogger.swift */; };
 		B53B194A1AAF359800FF4D36 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B19491AAF359800FF4D36 /* ColorView.swift */; };
@@ -32,8 +34,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B5104EDC1ABB354A0031C038 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5104EE51ABB357F0031C038 /* Sparkle.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		294E13C0FB90A794B0DD7E8C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5104EDA1ABB35410031C038 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = "<group>"; };
+		B5104EE31ABB35780031C038 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		B53B193F1AAF292600FF4D36 /* AppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsController.swift; sourceTree = "<group>"; };
 		B53B19471AAF2EF300FF4D36 /* DCOLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCOLogger.swift; sourceTree = "<group>"; };
 		B53B19491AAF359800FF4D36 /* ColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
@@ -58,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5104EE41ABB35780031C038 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,9 +93,26 @@
 		4C5A09AD2E6E0401508854F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5104EDA1ABB35410031C038 /* Sparkle.framework */,
 				294E13C0FB90A794B0DD7E8C /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5104EE11ABB35780031C038 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B5104EE21ABB35780031C038 /* Sparkle */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		B5104EE21ABB35780031C038 /* Sparkle */ = {
+			isa = PBXGroup;
+			children = (
+				B5104EE31ABB35780031C038 /* Sparkle.framework */,
+			);
+			path = Sparkle;
 			sourceTree = "<group>";
 		};
 		B53D41791AB6FE5D00ED47D4 /* Buttons */ = {
@@ -100,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				B5A4425D1AAF1E5A00A280A3 /* Spotify AppleScript Patch */,
+				B5104EE11ABB35780031C038 /* Vendor */,
 				B5A442701AAF1E5A00A280A3 /* Spotify AppleScript PatchTests */,
 				B5A4425C1AAF1E5A00A280A3 /* Products */,
 				4C5A09AD2E6E0401508854F8 /* Frameworks */,
@@ -169,7 +206,9 @@
 				B5A442571AAF1E5A00A280A3 /* Sources */,
 				B5A442581AAF1E5A00A280A3 /* Frameworks */,
 				B5A442591AAF1E5A00A280A3 /* Resources */,
+				B5104EDC1ABB354A0031C038 /* Copy Frameworks */,
 				B5104ED91ABB301A0031C038 /* Bump Build Number */,
+				B5FFDE111ABC3A3000BCD275 /* Sign Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,6 +308,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# https://gist.github.com/sekati/3172554\nif [ \"${CONFIGURATION}\" = \"Release\" ]; then\n\n# xcode-build-bump.sh\n# @desc Auto-increment the build number every time the project is run.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\nfi";
 		};
+		B5FFDE111ABC3A3000BCD275 /* Sign Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Sign Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nIDENTITY=\"Developer ID Application: B.G. van Amstel\"\ncodesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A/Resources/Autoupdate.app\"\ncodesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework/Versions/A\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -336,7 +389,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application: B.G. van Amstel (RVZKP45394)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -378,7 +431,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application: B.G. van Amstel (RVZKP45394)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -401,6 +454,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/Sparkle",
+				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "Spotify AppleScript Patch/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -414,6 +471,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/Sparkle",
+				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "Spotify AppleScript Patch/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

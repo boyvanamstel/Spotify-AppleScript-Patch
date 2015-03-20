@@ -8,12 +8,17 @@
 
 import Cocoa
 
+import Sparkle
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     // Insert code here to initialize your application
     
+    var updater = SUUpdater()
+    updater.feedURL = NSURL(string: "http://update.dangercove.com/spotify-applescript-patch/appcast.rss")
+    DCOLogger.info("Last update check \(updater.lastUpdateCheckDate)")
   }
   
   func applicationWillTerminate(aNotification: NSNotification) {
