@@ -127,6 +127,10 @@ gulp.task('deploy', function() {
   return gulp.src('./dist/**/*').pipe(ghPages());
 });
 
+gulp.task('clear', function() {
+  $.cache.clearAll();
+});
+
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
